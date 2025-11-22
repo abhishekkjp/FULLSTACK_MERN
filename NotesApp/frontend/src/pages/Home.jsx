@@ -82,6 +82,7 @@ const Home = () => {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
+      setCurrentNote(null) ; 
      if(response.data.success){
        fetchNote() ; 
        closeModal() ; 
@@ -124,6 +125,7 @@ const Home = () => {
           addNote={addNote}
           currentNote={currentNote}
           editNote={editNote}
+          setCurrentNote={setCurrentNote}
         />
       )}
     </div>

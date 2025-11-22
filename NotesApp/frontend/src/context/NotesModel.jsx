@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const NotesModel = ({ closeModal,addNote ,currentNote,editNote}) => {
+const NotesModel = ({ closeModal,addNote ,currentNote,editNote,setCurrentNote}) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
@@ -15,6 +15,11 @@ const NotesModel = ({ closeModal,addNote ,currentNote,editNote}) => {
         addNote(title,description) ; 
     }
   };
+
+  const onCancelHandler = ()=>{
+    closeModal() ; 
+    setCurrentNote(null) ; 
+  }
 
   useEffect(()=>{
     setTitle(currentNote?.title) ; 
@@ -46,7 +51,7 @@ const NotesModel = ({ closeModal,addNote ,currentNote,editNote}) => {
             {currentNote ? "Update Note" : "Add Note"}  
           </button>
         </form>
-        <button className="text-red-500 mt-4" onClick={closeModal}>
+        <button className="text-red-500 mt-4" onClick={onCancelHandler}>
           Cancel
         </button>
       </div>
