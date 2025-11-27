@@ -2,6 +2,7 @@ const express = require('express') ;
 require("dotenv").config();
 const cors = require('cors') ; 
 const authRouter = require('./routes/auth') ; 
+const departmentRouter = require('./routes/department') ; 
 const connectToDatabase = require('./db/db') ;  
 
 
@@ -13,6 +14,7 @@ app.use(cors()) ;
 app.use(express.json()) ; 
 const port = process.env.PORT || 5001 ; 
 app.use('/api/auth' , authRouter) ; 
+app.use('/api/department' , departmentRouter) ; 
 
 
 app.listen(port,()=>{
