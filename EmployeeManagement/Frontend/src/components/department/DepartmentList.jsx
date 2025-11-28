@@ -7,7 +7,16 @@ import axios from "axios";
 const DepartmentList = () => {
   const [departments, setDepartments] = useState([]);
   const [loading, setLoading] = useState(false);
-  //console.log('help me ') ;
+
+const onDepartmentDelete =  (id)=>{
+    console.log(id) ; 
+    console.log(departments)  ; 
+      const data = departments.filter((dep) => dep._id !== id) ; 
+     // console.log('running') ; 
+      setDepartments(data) ; 
+}
+
+
   useEffect(() => {
   //  console.log("useEffect is running ");
     setLoading(true);
@@ -29,9 +38,10 @@ const DepartmentList = () => {
             _id: dep._id,
             sno: sno++,
             dep_name: dep.dep_name,
-            action: <DepartmentButtons _id={dep._id}/>
+           // action: <DepartmentButtons  _id={dep._id} onDepartmentDelete={onDepartmentDelete}/>
           }));
           setDepartments(data);
+          //console.log(data) ; 
         }
       } catch (error) {
         setLoading(false);
@@ -70,7 +80,7 @@ const DepartmentList = () => {
       </div>
       {departments.length>0 && 
        <div className="mt-5">
-         <DataTable columns={columns} data={departments} />
+         <DataTable columns={columns(onDepartmentDelete)} data={departments} />
        </div>
      
       }

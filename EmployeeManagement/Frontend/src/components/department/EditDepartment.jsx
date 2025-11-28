@@ -42,14 +42,16 @@ const EditDepartment = () => {
             const response = await axios.put(`http://localhost:3000/api/department/${id}` , department , {
                 headers : {Authorization : `Bearer ${localStorage.getItem("token")}`}
             })
-           console.log(response, 'i am here') ; 
+            console.log(response)  ; 
+        //   console.log(response, 'i am here') ; 
             if(response.data.success){
                 navigate('/admin-dashboard/departments') ; 
+
             }
            
 
          } catch (error) {
-            
+            console.log(error) ; 
          }
     }
 
