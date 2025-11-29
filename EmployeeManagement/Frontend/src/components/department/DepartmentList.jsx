@@ -7,13 +7,14 @@ import axios from "axios";
 const DepartmentList = () => {
   const [departments, setDepartments] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [filteredData,setFilteredData] = useState([]) ; 
 
 const onDepartmentDelete =  (id)=>{
-    console.log(id) ; 
-    console.log(departments)  ; 
-      const data = departments.filter((dep) => dep._id !== id) ; 
-     // console.log('running') ; 
+      const data = departments
+                       .filter((dep) => dep._id !== id)
+                       .map((dep,index)=> ({...dep , sno:index+1}))  ; 
       setDepartments(data) ; 
+      setFilteredData(data) ; 
 }
 
 
@@ -41,6 +42,7 @@ const onDepartmentDelete =  (id)=>{
            // action: <DepartmentButtons  _id={dep._id} onDepartmentDelete={onDepartmentDelete}/>
           }));
           setDepartments(data);
+          setFilteredData(data) ; 
           //console.log(data) ; 
         }
       } catch (error) {
@@ -56,6 +58,12 @@ const onDepartmentDelete =  (id)=>{
     fetchDepartments();
   }, []);
 
+
+  const filterDepartment = (e)=>{
+      const filteredData = departments.filter((dep)=> dep.dep_name.toLowerCase().includes(e.target.value.toLowerCase())) ;
+      setFilteredData(filteredData) ; 
+  }
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -70,6 +78,7 @@ const onDepartmentDelete =  (id)=>{
           type="text"
           placeholder="Department"
           className="border px-4 py-0.5 "
+          onChange={filterDepartment}
         />
         <Link
           to="/admin-dashboard/add-department"
@@ -80,7 +89,7 @@ const onDepartmentDelete =  (id)=>{
       </div>
       {departments.length>0 && 
        <div className="mt-5">
-         <DataTable columns={columns(onDepartmentDelete)} data={departments} />
+         <DataTable columns={columns(onDepartmentDelete)} data={filteredData} pagination/>
        </div>
      
       }

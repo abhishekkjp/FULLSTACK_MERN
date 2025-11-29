@@ -8,7 +8,8 @@ export const  columns  = (onDepartmentDelete)=> [
     },
     {
         name : "Department Name" , 
-        selector : (row)=> row.dep_name  
+        selector : (row)=> row.dep_name   , 
+        sortable : true 
     },
     {
         name : "Action" , 
@@ -30,7 +31,6 @@ export const DepartmentButtons = ({_id,onDepartmentDelete})=>{
 
      const handleDelete =  async (Id)=>{
        const confirm = window.confirm("Do you want to delete ?") ; 
-       
        if(confirm){
            try {
             
