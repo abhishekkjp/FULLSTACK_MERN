@@ -15,7 +15,7 @@ const addDepartment = async (req,res)=>{
 const getDepartments = async(req,res)=>{
     try {
        const departments  = await Department.find() ; 
-      // console.log(departments) ; 
+       console.log('koko ni imasu ') ; 
        return res.status(200).json({success:true , departments}) ; 
    } catch (error) {
      return res.status(500).json({success:false , error:"Unable to fetch departments"}) ; 
