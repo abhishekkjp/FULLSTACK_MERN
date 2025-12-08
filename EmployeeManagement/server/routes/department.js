@@ -8,7 +8,8 @@ router.post('/add' ,authMiddleware,  addDepartment) ;
 router.get('/' ,authMiddleware, getDepartments)  ; 
 router.get('/:id' , authMiddleware,editDepartment) ; 
 router.put('/:id' , authMiddleware,updateDepartment)  ;
-router.delete('/:id' , authMiddleware,deleteDepartment) ;  
+router.delete('/:id' , authMiddleware,deleteDepartment) ; 
+
 
 
 module.exports = router  ; 

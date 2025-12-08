@@ -31,7 +31,7 @@ const AuthContext = ({children}) => {
                           setLoading(false) ; 
                      }
                  } catch (error) {
-                        console.log("abhishek is here") ; 
+                      //  console.log("abhishek is here") ; 
                         setLoading(false) ; 
                          navigate('/login') ; 
                  }

@@ -6,10 +6,13 @@ const User = require('../models/Users');
 
 
 const verifyUser =  async (req,res,next)=>{
-    try {
+  //  console.log('update') ; 
+ // console.log('endpoint hitting') ; 
+    try { 
         const token = req.headers.authorization?.split(' ')[1] ; 
+       // console.log(token) ; 
         if(!token){
-           return  res.status(404).json({success:false , error : 'Token not provided'}) ; 
+            return  res.status(404).json({success:false , error : 'Token not provided'}) ; 
         } 
         const decoded =   jwt.verify(token,process.env.JWT_KEY) ; 
         if(!decoded){
@@ -21,6 +24,7 @@ const verifyUser =  async (req,res,next)=>{
            return  res.status(404).json({success:false , error : 'User not found'}) ; 
         }
         req.user = user  ; 
+       
         next() ; 
     } catch (error) {
          return res.status(500).json({success:false, error : 'Server Error'}) ; 

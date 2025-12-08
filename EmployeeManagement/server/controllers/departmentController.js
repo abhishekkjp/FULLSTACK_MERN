@@ -52,4 +52,5 @@ const deleteDepartment = async (req,res)=>{
 }
 
 
+
 module.exports = {addDepartment,getDepartments,editDepartment,updateDepartment,deleteDepartment} ; 
